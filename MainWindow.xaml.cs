@@ -25,10 +25,10 @@ namespace Metronome
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            AudioEngine audioEngine = new AudioEngine();
-            audioEngine.Start();
+            AudioEngine ae = new AudioEngine();
+            ae.Start();
         }
     }
 }
