@@ -14,8 +14,11 @@ namespace Metronome
         private readonly WaveOut outputDevice;
         private readonly MixingSampleProvider mixer;
 
-        private string accentedBeat = "Sounds/snare.wav";
-        private string normalBeat = "Sounds/hi-hat.wav";
+        private string accentedBeatPath = "Sounds/snare.wav";
+        private string normalBeatPath = "Sounds/hi-hat.wav";
+
+        private CachedSound accentedBeat;
+        private CachedSound normalBeat;
 
         private DispatcherTimer timer;
         private int beatCount = 1;
@@ -26,11 +29,13 @@ namespace Metronome
             timer.Tick += new EventHandler(PlayBeat);
             timer.Interval = new TimeSpan(0, 0, 0, 0, 800);
 
+            CreateAudioCache();
             outputDevice = new WaveOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
             mixer.ReadFully = true;
             outputDevice.Init(mixer);
             outputDevice.Play();
+
         }
 
         public void Start()
@@ -57,18 +62,20 @@ namespace Metronome
 
         private void PlayAccentedBeat()
         {
-            mixer.AddMixerInput(GetBeat(accentedBeat));
+            CachedSoundSampleProvider provider = new CachedSoundSampleProvider(accentedBeat);
+            mixer.AddMixerInput(provider);
         }
 
         private void PlayNormalBeat()
         {
-            mixer.AddMixerInput(GetBeat(normalBeat));
+            CachedSoundSampleProvider provider = new CachedSoundSampleProvider(normalBeat);
+            mixer.AddMixerInput(provider);
         }
 
-        private IWaveProvider GetBeat(string path)
+        private void CreateAudioCache()
         {
-            AudioFileReader reader = new AudioFileReader(path);
-            return reader.ToWaveProvider();
+            this.accentedBeat = new CachedSound(this.accentedBeatPath);
+            this.normalBeat = new CachedSound(this.normalBeatPath);
         }
     }
 }
