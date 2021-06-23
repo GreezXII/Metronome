@@ -20,14 +20,14 @@ namespace Metronome
         private CachedSound accentedBeat;
         private CachedSound normalBeat;
 
-        private DispatcherTimer timer;
+        private MicroLibrary.MicroTimer timer;
         private int beatCount = 1;
 
         public AudioEngine(int sampleRate = 44100, int channelCount = 2)
         {
-            timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(PlayBeat);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 800);
+            timer = new MicroLibrary.MicroTimer();
+            timer.MicroTimerElapsed += new MicroLibrary.MicroTimer.MicroTimerElapsedEventHandler(PlayBeat);
+            timer.Interval = 500000;
 
             CreateAudioCache();
             outputDevice = new WaveOut();
