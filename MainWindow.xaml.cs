@@ -27,8 +27,10 @@ namespace Metronome
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            AudioEngine ae = new AudioEngine();
-            ae.Start();
+            //AudioEngine ae = new AudioEngine();
+            //ae.Start();
+            PreciseTimer timer = new PreciseTimer();
+            MessageBox.Show(timer.elapsedTime.ToString());
         }
     }
 }
