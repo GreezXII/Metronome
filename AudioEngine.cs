@@ -20,19 +20,10 @@ namespace Metronome
         private CachedSound accentedBeat;
         private CachedSound normalBeat;
 
-        private MicroLibrary.MicroTimer timer;
-        private int beatCount = 1;
-
         public AudioEngine(int sampleRate = 44100, int channelCount = 2)
         {
-            timer = new MicroLibrary.MicroTimer();
-            timer.MicroTimerElapsed += new MicroLibrary.MicroTimer.MicroTimerElapsedEventHandler(PlayBeat);
-            timer.Interval = 500000;
-
-            CreateAudioCache();
             outputDevice = new WaveOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
-            mixer.ReadFully = true;
             outputDevice.Init(mixer);
             outputDevice.Play();
 
@@ -40,42 +31,7 @@ namespace Metronome
 
         public void Start()
         {
-            timer.Start();
-        }
-
-        private void PlayBeat(object sender, EventArgs e)
-        {
-            if (beatCount == 1)
-            {
-                PlayAccentedBeat();
-                beatCount++;
-            }
-            else
-            {
-                PlayNormalBeat();
-                if (beatCount == 4)
-                    beatCount = 1;
-                else
-                    beatCount++;
-            }
-        }
-
-        private void PlayAccentedBeat()
-        {
-            CachedSoundSampleProvider provider = new CachedSoundSampleProvider(accentedBeat);
-            mixer.AddMixerInput(provider);
-        }
-
-        private void PlayNormalBeat()
-        {
-            CachedSoundSampleProvider provider = new CachedSoundSampleProvider(normalBeat);
-            mixer.AddMixerInput(provider);
-        }
-
-        private void CreateAudioCache()
-        {
-            this.accentedBeat = new CachedSound(this.accentedBeatPath);
-            this.normalBeat = new CachedSound(this.normalBeatPath);
+            
         }
     }
 }
