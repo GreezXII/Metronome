@@ -5,10 +5,10 @@ namespace Metronome
 {
     class CachedSoundSampleProvider : ISampleProvider
     {
-        private readonly CachedSound cachedSound;
+        private readonly SampleSource cachedSound;
         private long position;
 
-        public CachedSoundSampleProvider(CachedSound cachedSound)
+        public CachedSoundSampleProvider(SampleSource cachedSound)
         {
             this.cachedSound = cachedSound;
         }

@@ -17,21 +17,16 @@ namespace Metronome
         private string accentedBeatPath = "Sounds/snare.wav";
         private string normalBeatPath = "Sounds/hi-hat.wav";
 
-        private CachedSound accentedBeat;
-        private CachedSound normalBeat;
+        public SampleSource accentedBeat;
+        private SampleSource normalBeat;
 
         public AudioEngine(int sampleRate = 44100, int channelCount = 2)
         {
+            accentedBeat = new SampleSource(accentedBeatPath);
             outputDevice = new WaveOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
             outputDevice.Init(mixer);
             outputDevice.Play();
-
-        }
-
-        public void Start()
-        {
-            
         }
     }
 }
