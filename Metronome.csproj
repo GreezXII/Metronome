@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NAudio" Version="2.0.1" />
+    <Compile Remove="Sounds\Converted\**" />
+    <EmbeddedResource Remove="Sounds\Converted\**" />
+    <None Remove="Sounds\Converted\**" />
+    <Page Remove="Sounds\Converted\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Sounds\Converted\" />
+    <PackageReference Include="NAudio" Version="2.0.1" />
   </ItemGroup>
 
 </Project>
