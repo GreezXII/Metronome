@@ -28,8 +28,6 @@ namespace Metronome
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
             AudioEngine ae = new AudioEngine();
-            string message = $"{ae.accentedBeat.Duration}";
-            MessageBox.Show(message);
         }
     }
 }
