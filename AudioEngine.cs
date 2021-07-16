@@ -23,9 +23,13 @@ namespace Metronome
         public AudioEngine(int sampleRate = 44100, int channelCount = 2)
         {
             accentedBeat = new SampleSource(accentedBeatPath);
-            SampleSource 
+            Pattern patternEngine = new Pattern();
+            SampleSource pattern = patternEngine.CreatePattern(accentedBeat);
+
             outputDevice = new WaveOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
+            mixer.AddMixerInput(new SampleSourceProvider(pattern));
+
             outputDevice.Init(mixer);
             outputDevice.Play();
         }

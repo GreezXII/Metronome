@@ -15,7 +15,7 @@ namespace Metronome
 
         public int Read(float[] buffer, int offset, int count)
         {
-            var availableSamples = sampleSource.AudioData.Length - position;
+            var availableSamples = sampleSource.Length - position;
             var samplesToCopy = Math.Min(availableSamples, count);
             Array.Copy(sampleSource.AudioData, position, buffer, offset, samplesToCopy);
             position += samplesToCopy;

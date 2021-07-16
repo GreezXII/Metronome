@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "17OlFx/gWrGlZCYIlNkRicot/L5gVtfW/ZO0RRr1zl866037MehXHzGkjbjDFedBrgu8Zo7TwJ5/bjWMWW+QkQ==",
+  "dgSpecHash": "1MXSd422fwn0T0++vGeI2UB1HtMU2c7+1IzGrMtS8ypyYvecNNKSl3m8Iv92raArE1FjKtntUpfQvsfKMna69Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\Кирилл\\Проекты\\Metronome\\Metronome.csproj",
   "expectedPackageFiles": [
@@ -15,7 +15,7 @@
     "C:\\Users\\Кирилл\\.nuget\\packages\\naudio.winmm\\2.0.1\\naudio.winmm.2.0.1.nupkg.sha512",
     "C:\\Users\\Кирилл\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\Кирилл\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
-    "C:\\Users\\Кирилл\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.5\\microsoft.netcore.app.host.win-x64.5.0.5.nupkg.sha512",
+    "C:\\Users\\Кирилл\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.7\\microsoft.netcore.app.host.win-x64.5.0.7.nupkg.sha512",
     "C:\\Users\\Кирилл\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
     "C:\\Users\\Кирилл\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512",
     "C:\\Users\\Кирилл\\.nuget\\packages\\microsoft.netcore.app.ref\\5.0.0\\microsoft.netcore.app.ref.5.0.0.nupkg.sha512"

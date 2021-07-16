@@ -31,19 +31,29 @@ namespace Metronome
             WaveFormat = waveFormat;
             Length = audioData.Length;
             Duration = (double)Length / (WaveFormat.SampleRate * WaveFormat.Channels * (WaveFormat.BitsPerSample / 8));
-            AudioData = AudioData;
+            AudioData = audioData;
         }
 
         // TODO: Проверить, чтобы файл не был длиннее endTime
         public void IncreaseDuration(double endTime)
         {
-            double additionalDuration = Math.Abs(Duration - endTime);
-            long additionalLength = (long)(WaveFormat.SampleRate * WaveFormat.Channels * WaveFormat.BitsPerSample / 8 * additionalDuration);
-            float[] buffer = new float[Length + additionalLength];
-            AudioData.CopyTo(buffer, 0);
-            AudioData = buffer;
-            Length = Length + additionalLength;
-            Duration = Duration + additionalDuration;
+            if (Duration > endTime)
+            {
+                Duration = endTime;
+                Length = (long)(WaveFormat.SampleRate * WaveFormat.Channels * (WaveFormat.BitsPerSample / 8) * endTime);
+                float[] buffer = new float[Length];
+                System.Array.Copy(AudioData, 0, buffer, 0, Length);
+            }
+            else
+            {
+                double additionalDuration = Math.Abs(Duration - endTime);
+                long additionalLength = (long)(WaveFormat.SampleRate * WaveFormat.Channels * (WaveFormat.BitsPerSample / 8) * additionalDuration);
+                float[] buffer = new float[Length + additionalLength];
+                AudioData.CopyTo(buffer, 0);
+                AudioData = buffer;
+                Length = Length + additionalLength;
+                Duration = Duration + additionalDuration;
+            }
         }
 
         public static SampleSource operator + (SampleSource A, SampleSource B)

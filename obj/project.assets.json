@@ -493,7 +493,7 @@
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.5, 5.0.5]"
+            "version": "[5.0.7, 5.0.7]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
@@ -512,7 +512,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.5.21302.13\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.6.21355.2\\RuntimeIdentifierGraph.json"
       }
     }
   }
