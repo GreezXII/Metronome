@@ -12,7 +12,7 @@ namespace Metronome
         public int Measure { get; set; }
         private double BeatDuration { get; set; }
 
-        public Pattern(int bpm = 80, int measure = 4)
+        public Pattern(int bpm = 200, int measure = 4)
         {
             BPM = bpm;
             BeatDuration = 60.0 / BPM / 4;

@@ -6,7 +6,7 @@ namespace Metronome
     class SampleSourceProvider : ISampleProvider
     {
         private readonly SampleSource sampleSource;
-        private long position;
+        private long Position { get; set; }
 
         public SampleSourceProvider(SampleSource samples)
         {
@@ -15,10 +15,26 @@ namespace Metronome
 
         public int Read(float[] buffer, int offset, int count)
         {
-            var availableSamples = sampleSource.Length - position;
+            int totalBytesRead = 0;
+
+            while (totalBytesRead < count)
+            {
+                int bytesRead = ReadSample(buffer, offset + totalBytesRead, count - totalBytesRead);
+                if (bytesRead == 0)
+                {
+                    Position = 0;
+                }
+                totalBytesRead += bytesRead;
+            }
+            return totalBytesRead;
+        }
+
+        private int ReadSample(float[] buffer, int offset, int count)
+        {
+            var availableSamples = sampleSource.Length - Position;
             var samplesToCopy = Math.Min(availableSamples, count);
-            Array.Copy(sampleSource.AudioData, position, buffer, offset, samplesToCopy);
-            position += samplesToCopy;
+            Array.Copy(sampleSource.AudioData, Position, buffer, offset, samplesToCopy);
+            Position += samplesToCopy;
             return (int)samplesToCopy;
         }
 
