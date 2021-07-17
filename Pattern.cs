@@ -12,21 +12,19 @@ namespace Metronome
         public int Measure { get; set; }
         private double BeatDuration { get; set; }
 
-        public Pattern(int bpm = 200, int measure = 4)
+        public Pattern(int bpm = 80, int measure = 4)
         {
             BPM = bpm;
-            BeatDuration = 60.0 / BPM;
-            Measure = 4;
+            BeatDuration = 60.0 / BPM / 4;
+            Measure = 10;
         }
 
         public SampleSource CreatePattern(SampleSource sample)
         {
-            //sample.IncreaseDuration(1);
-            //sample = sample;
-            //return sample;
-            long len =  (long)(sample.WaveFormat.SampleRate * sample.WaveFormat.Channels * (sample.WaveFormat.BitsPerSample / 8) * BeatDuration);
-            long step = len / Measure;
-            float[] buffer = new float[len];
+            long step = (long)(sample.WaveFormat.SampleRate * sample.WaveFormat.Channels * (sample.WaveFormat.BitsPerSample / 8) * BeatDuration);
+            long length =  step * Measure;
+            
+            float[] buffer = new float[length];
 
             long index = 0;
             while (index < buffer.Length)
