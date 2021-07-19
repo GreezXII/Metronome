@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using NAudio.Wave;
 
 
@@ -32,60 +30,6 @@ namespace Metronome
             Length = audioData.Length;
             Duration = (double)Length / (WaveFormat.SampleRate * WaveFormat.Channels * (WaveFormat.BitsPerSample / 8));
             AudioData = audioData;
-        }
-
-        // TODO: Проверить, чтобы файл не был длиннее endTime
-        public void IncreaseDuration(double endTime)
-        {
-            if (Duration > endTime)
-            {
-                Duration = endTime;
-                Length = (long)(WaveFormat.SampleRate * WaveFormat.Channels * (WaveFormat.BitsPerSample / 8) * endTime);
-                float[] buffer = new float[Length];
-                System.Array.Copy(AudioData, 0, buffer, 0, Length);
-            }
-            else
-            {
-                double additionalDuration = Math.Abs(Duration - endTime);
-                long additionalLength = (long)(WaveFormat.SampleRate * WaveFormat.Channels * (WaveFormat.BitsPerSample / 8) * additionalDuration);
-                float[] buffer = new float[Length + additionalLength];
-                AudioData.CopyTo(buffer, 0);
-                AudioData = buffer;
-                Length = Length + additionalLength;
-                Duration = Duration + additionalDuration;
-            }
-        }
-
-        public static SampleSource operator + (SampleSource A, SampleSource B)
-        {
-            float[] buffer = new float[A.Length + B.Length];
-            A.AudioData.CopyTo(buffer, 0);
-            B.AudioData.CopyTo(buffer, A.Length);
-            return new SampleSource(buffer, A.WaveFormat);
-        }
-
-        public static SampleSource operator * (SampleSource sample, int factor)
-        {
-            float[] buffer = new float[sample.Length * factor];
-            long index = 0;
-            for (int i = 0; i < factor; i++)
-            {
-                sample.AudioData.CopyTo(buffer, index);
-                index += sample.Length;
-            }
-            return new SampleSource(buffer, sample.WaveFormat);
-        }
-
-        public static SampleSource operator * (int factor, SampleSource sample)
-        {
-            float[] buffer = new float[sample.Length * factor];
-            long index = 0;
-            for (int i = 0; i < factor; i++)
-            {
-                sample.AudioData.CopyTo(buffer, index);
-                index += sample.Length;
-            }
-            return new SampleSource(buffer, sample.WaveFormat);
         }
     }
 }
