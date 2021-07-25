@@ -9,6 +9,8 @@ namespace Metronome
         private int BPM { get; set; }
         private int Measure { get; set; }
         private double BeatDuration { get; set; }
+        public SampleSource AccentedBeat { get; set; }
+        public SampleSource NormalBeat { get; set; }
 
         private void Initialize(int bpm = 120, int measure = 4)
         {
@@ -22,10 +24,10 @@ namespace Metronome
             return (long)(waveFormat.SampleRate * waveFormat.Channels * (waveFormat.BitsPerSample / 8) * BeatDuration);
         }
 
-        public SampleSource CreatePattern(int bpm, int measure, SampleSource accentedBeat, SampleSource normalBeat)
+        public SampleSource CreatePattern(int bpm, int measure)
         {
             Initialize(bpm, measure);
-            long beatLength = GetBeatLength(accentedBeat.WaveFormat);
+            long beatLength = GetBeatLength(AccentedBeat.WaveFormat);
             long fullLength = beatLength * Measure;
 
             float[] buffer = new float[fullLength];
@@ -36,9 +38,9 @@ namespace Metronome
             {
                 //  Copy accented beat first
                 if (index == 0)
-                    beat = accentedBeat;
+                    beat = AccentedBeat;
                 else
-                    beat = normalBeat;
+                    beat = NormalBeat;
 
                 if (beat.Length > beatLength)
                     Array.Copy(beat.AudioData, 0, buffer, index, beatLength);
@@ -48,7 +50,7 @@ namespace Metronome
                 index += beatLength;
             }
 
-            return new SampleSource(buffer, accentedBeat.WaveFormat);
+            return new SampleSource(buffer, AccentedBeat.WaveFormat);
         }
     }
 }

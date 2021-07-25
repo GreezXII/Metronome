@@ -20,12 +20,11 @@ namespace Metronome
     /// </summary>
     public partial class MainWindow : Window
     {
-        private AudioEngine audioEngine;
+        private AudioEngine audioEngine = new AudioEngine();
 
         public MainWindow()
         {
             InitializeComponent();
-            audioEngine = new AudioEngine();
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
@@ -36,6 +35,12 @@ namespace Metronome
         private void stopButton_Click(object sender, RoutedEventArgs e)
         {
             audioEngine.Stop();
+        }
+
+        private void bpmTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int bpm = int.Parse(bpmTextBox.Text);
+            audioEngine.Update(bpm, 4);
         }
     }
 }

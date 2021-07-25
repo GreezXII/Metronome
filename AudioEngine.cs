@@ -11,12 +11,14 @@ namespace Metronome
         private string accentedBeatPath = "Sounds/snare.wav";
         private string normalBeatPath = "Sounds/hi-hat.wav";
 
-        SampleSource pattern;
+        PatternEngine patternEngine = new PatternEngine();
+        SampleSource Pattern { get; set; }
 
         public AudioEngine(int sampleRate = 44100, int channelCount = 2)
         {
-            PatternEngine patternEngine = new PatternEngine();
-            pattern = patternEngine.CreatePattern(120, 4, new SampleSource(accentedBeatPath), new SampleSource(normalBeatPath));
+            patternEngine.AccentedBeat = new SampleSource(accentedBeatPath);
+            patternEngine.NormalBeat = new SampleSource(normalBeatPath);
+            Pattern = patternEngine.CreatePattern(120, 4);
 
             outputDevice = new WaveOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
@@ -26,7 +28,7 @@ namespace Metronome
 
         public void Play()
         {
-            mixer.AddMixerInput(new SampleSourceProvider(pattern));
+            mixer.AddMixerInput(new SampleSourceProvider(Pattern));
             outputDevice.Play();
         }
 
@@ -34,6 +36,18 @@ namespace Metronome
         {
             outputDevice.Stop();
             mixer.RemoveAllMixerInputs();
+        }
+
+        public void Update(int bpm, int measure)
+        {
+            if (outputDevice.PlaybackState == PlaybackState.Playing)
+            {
+                Stop();
+                Pattern = patternEngine.CreatePattern(bpm, measure);
+                Play();
+            }
+            else
+                Pattern = patternEngine.CreatePattern(bpm, measure);
         }
     }
 }

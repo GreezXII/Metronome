@@ -12,7 +12,7 @@
             <ColumnDefinition Width="127*"/>
             <ColumnDefinition Width="27*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="bpmTextBox" HorizontalAlignment="Left" Margin="45,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+        <TextBox x:Name="bpmTextBox" HorizontalAlignment="Left" Margin="45,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" TextChanged="bpmTextBox_TextChanged" Text="120"/>
         <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="45,84,0,0" VerticalAlignment="Top" Grid.Column="1" Click="playButton_Click"/>
         <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="125,84,0,0" VerticalAlignment="Top" Grid.Column="1" Click="stopButton_Click"/>
 
