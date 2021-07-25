@@ -20,14 +20,22 @@ namespace Metronome
     /// </summary>
     public partial class MainWindow : Window
     {
+        private AudioEngine audioEngine;
+
         public MainWindow()
         {
             InitializeComponent();
+            audioEngine = new AudioEngine();
         }
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            AudioEngine ae = new AudioEngine();
+            audioEngine.Play();
+        }
+
+        private void stopButton_Click(object sender, RoutedEventArgs e)
+        {
+            audioEngine.Stop();
         }
     }
 }

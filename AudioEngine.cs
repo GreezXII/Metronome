@@ -11,22 +11,29 @@ namespace Metronome
         private string accentedBeatPath = "Sounds/snare.wav";
         private string normalBeatPath = "Sounds/hi-hat.wav";
 
-        public SampleSource accentedBeat;
-        private SampleSource normalBeat;
+        SampleSource pattern;
 
         public AudioEngine(int sampleRate = 44100, int channelCount = 2)
         {
-            accentedBeat = new SampleSource(accentedBeatPath);
-            normalBeat = new SampleSource(normalBeatPath);
             PatternEngine patternEngine = new PatternEngine();
-            SampleSource pattern = patternEngine.CreatePattern(accentedBeat, normalBeat);
+            pattern = patternEngine.CreatePattern(new SampleSource(accentedBeatPath), new SampleSource(normalBeatPath));
 
             outputDevice = new WaveOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
-            mixer.AddMixerInput(new SampleSourceProvider(pattern));
 
             outputDevice.Init(mixer);
+        }
+
+        public void Play()
+        {
+            mixer.AddMixerInput(new SampleSourceProvider(pattern));
             outputDevice.Play();
+        }
+
+        public void Stop()
+        {
+            outputDevice.Stop();
+            mixer.RemoveAllMixerInputs();
         }
     }
 }
