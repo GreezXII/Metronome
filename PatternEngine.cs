@@ -1,27 +1,34 @@
 ﻿using System;
+using NAudio.Wave;
 
 
 namespace Metronome
 {
     class PatternEngine
     {
-        public int BPM { get; set; }
-        public int Measure { get; set; }
+        private int BPM { get; set; }
+        private int Measure { get; set; }
         private double BeatDuration { get; set; }
 
-        public PatternEngine(int bpm = 200, int measure = 4)
+        private void Initialize(int bpm = 120, int measure = 4)
         {
             BPM = bpm;
             BeatDuration = 60.0 / BPM / 4;
             Measure = measure;
         }
 
-        public SampleSource CreatePattern(SampleSource accentedBeat, SampleSource normalBeat)
+        private long GetBeatLength(WaveFormat waveFormat)
         {
-            long step = (long)(accentedBeat.WaveFormat.SampleRate * accentedBeat.WaveFormat.Channels * (accentedBeat.WaveFormat.BitsPerSample / 8) * BeatDuration);
-            long length = step * Measure;
+            return (long)(waveFormat.SampleRate * waveFormat.Channels * (waveFormat.BitsPerSample / 8) * BeatDuration);
+        }
 
-            float[] buffer = new float[length];
+        public SampleSource CreatePattern(int bpm, int measure, SampleSource accentedBeat, SampleSource normalBeat)
+        {
+            Initialize(bpm, measure);
+            long beatLength = GetBeatLength(accentedBeat.WaveFormat);
+            long fullLength = beatLength * Measure;
+
+            float[] buffer = new float[fullLength];
 
             long index = 0;
             SampleSource beat;
@@ -33,12 +40,12 @@ namespace Metronome
                 else
                     beat = normalBeat;
 
-                if (beat.Length > step)
-                    Array.Copy(beat.AudioData, 0, buffer, index, step);
+                if (beat.Length > beatLength)
+                    Array.Copy(beat.AudioData, 0, buffer, index, beatLength);
                 else
                     Array.Copy(beat.AudioData, 0, buffer, index, beat.AudioData.Length);
 
-                index += step;
+                index += beatLength;
             }
 
             return new SampleSource(buffer, accentedBeat.WaveFormat);
