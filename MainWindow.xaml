@@ -5,16 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Metronome"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="6*"/>
-            <ColumnDefinition Width="127*"/>
-            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="bpmTextBox" HorizontalAlignment="Left" Margin="45,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" TextChanged="bpmTextBox_TextChanged" Text="120"/>
-        <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="45,84,0,0" VerticalAlignment="Top" Grid.Column="1" Click="playButton_Click"/>
-        <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="125,84,0,0" VerticalAlignment="Top" Grid.Column="1" Click="stopButton_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.Row="0">
+            <Label Grid.Column="1" Content="123" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Height="66" Width="202" FontSize="30" FontFamily="Bahnschrift SemiBold" FontWeight="Bold"/>
+        </Border>
+        <TextBox x:Name="bpmTextBox" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" Grid.Row="1" TextChanged="bpmTextBox_TextChanged" Text="120" KeyDown="bpmTextBox_KeyDown"/>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+            <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Click="playButton_Click"/>
+            <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Click="stopButton_Click"/>
+        </StackPanel>
 
     </Grid>
 </Window>

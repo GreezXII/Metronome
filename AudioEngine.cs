@@ -34,8 +34,8 @@ namespace Metronome
 
         public void Stop()
         {
-            outputDevice.Stop();
             mixer.RemoveAllMixerInputs();
+            outputDevice.Stop();
         }
 
         public void Update(int bpm, int measure)

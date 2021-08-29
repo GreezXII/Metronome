@@ -39,8 +39,20 @@ namespace Metronome
 
         private void bpmTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int bpm = int.Parse(bpmTextBox.Text);
-            audioEngine.Update(bpm, 4);
+            if (bpmTextBox.Text.Length == 0)
+                audioEngine.Stop();
+            else
+            {
+                int bpm = int.Parse(bpmTextBox.Text);
+                audioEngine.Update(bpm, 4);
+            }
+        }
+
+        private void bpmTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            // if Key is not digit or backspaces
+            if (!(e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key == Key.Back))
+                e.Handled = true;
         }
     }
 }
