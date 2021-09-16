@@ -63,31 +63,23 @@ namespace Metronome
 
         private void applyButton_Click(object sender, RoutedEventArgs e)
         {
+            // Restriction of maximum and minimum bpm values
             int bpm = 0;
-            if (bpmTextBox.Text.Length != 0)
+            int measure = 4;
+            if (int.TryParse(bpmTextBox.Text, out bpm))
             {
-                bpm = int.Parse(bpmTextBox.Text);
                 if (bpm < MinBPM)
-                {
-                    audioEngine.Update(MinBPM, 4);
-                    bpmLabel.Content = MinBPM;
-                }
+                    bpm = MinBPM;
                 else if (bpm > MaxBPM)
-                {
-                    audioEngine.Update(MaxBPM, 4);
-                    bpmLabel.Content = MaxBPM;
-                }
-                else
-                {
-                    audioEngine.Update(bpm, 4);
-                    bpmLabel.Content = bpm;
-                }
+                    bpm = MaxBPM;
+                UpdateBPM(bpm, measure);
             }
-            else
-            {
+        }
 
-                audioEngine.Update(bpm, 4);
-            }
+        private void UpdateBPM(int bpm, int measure)
+        {
+            audioEngine.Update(bpm, measure);
+            bpmLabel.Content = bpm;
         }
     }
 }
