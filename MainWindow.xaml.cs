@@ -20,6 +20,8 @@ namespace Metronome
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int MinBPM { get; set; } = 20;
+        private int MaxBPM { get; set; } = 500;
         private AudioEngine audioEngine = new AudioEngine();
 
         public MainWindow()
@@ -55,7 +57,7 @@ namespace Metronome
         {
             // if Key is not digit or backspaces
             //MessageBox.Show(e.Key.ToString());
-            if (!(e.Key >= Key.D0 && e.Key <= Key.D9 && e.Key != Key.Space || e.Key == Key.Back))
+            if (!(e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Back))
                 e.Handled = true;
         }
 
@@ -65,15 +67,15 @@ namespace Metronome
             if (bpmTextBox.Text.Length != 0)
             {
                 bpm = int.Parse(bpmTextBox.Text);
-                if (bpm < 20)
+                if (bpm < MinBPM)
                 {
-                    audioEngine.Update(20, 4);
-                    bpmLabel.Content = 20;
+                    audioEngine.Update(MinBPM, 4);
+                    bpmLabel.Content = MinBPM;
                 }
-                else if (bpm > 500)
+                else if (bpm > MaxBPM)
                 {
-                    audioEngine.Update(300, 4);
-                    bpmLabel.Content = 500;
+                    audioEngine.Update(MaxBPM, 4);
+                    bpmLabel.Content = MaxBPM;
                 }
                 else
                 {
