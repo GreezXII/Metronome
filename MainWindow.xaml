@@ -22,7 +22,7 @@
             <Label x:Name="bpmLabel" Grid.Column="1" Content="120" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" FontSize="48" FontFamily="Bahnschrift SemiBold" FontWeight="Bold"/>
         </Border>
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-            <TextBox x:Name="bpmTextBox" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" TextChanged="bpmTextBox_TextChanged" Text="120" KeyDown="bpmTextBox_KeyDown"/>
+            <TextBox x:Name="bpmTextBox" HorizontalAlignment="Left" Margin="5,5,5,5" TextWrapping="Wrap" VerticalAlignment="Top" Width="175" Grid.Column="1" Grid.Row="1" TextChanged="bpmTextBox_TextChanged" Text="120" KeyDown="bpmTextBox_KeyDown" MaxLength="4"/>
             <Button x:Name="applyButton" Content="Применить" Margin="5,5,5,5" Width="75" Click="applyButton_Click"></Button>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2">

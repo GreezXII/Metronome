@@ -44,7 +44,7 @@ namespace Metronome
             int caretIndex = bpmTextBox.CaretIndex;  // Save caret position to restore it after text update
             string input = "";
             // Check input when user try to paste  
-            foreach (char c in bpmTextBox.Text)
+            foreach (char c in bpmTextBox.Text.TrimStart('0'))  // Trim start zeros
                 if (char.IsDigit(c))
                     input += c;
                 else
