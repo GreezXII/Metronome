@@ -61,11 +61,29 @@ namespace Metronome
 
         private void applyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (bpmTextBox.Text.Length == 0)
-                audioEngine.Stop();
+            int bpm = 0;
+            if (bpmTextBox.Text.Length != 0)
+            {
+                bpm = int.Parse(bpmTextBox.Text);
+                if (bpm < 20)
+                {
+                    audioEngine.Update(20, 4);
+                    bpmLabel.Content = 20;
+                }
+                else if (bpm > 500)
+                {
+                    audioEngine.Update(300, 4);
+                    bpmLabel.Content = 500;
+                }
+                else
+                {
+                    audioEngine.Update(bpm, 4);
+                    bpmLabel.Content = bpm;
+                }
+            }
             else
             {
-                int bpm = int.Parse(bpmTextBox.Text);
+
                 audioEngine.Update(bpm, 4);
             }
         }
