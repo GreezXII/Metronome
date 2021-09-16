@@ -39,6 +39,28 @@ namespace Metronome
 
         private void bpmTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            int caretIndex = bpmTextBox.CaretIndex;  // Save caret position to restore it after text update
+            string input = "";
+            // Check input when user try to paste  
+            foreach (char c in bpmTextBox.Text)
+                if (char.IsDigit(c))
+                    input += c;
+                else
+                    caretIndex -= 1;  // Prevent index changing when character is not allowed
+            bpmTextBox.Text = input;
+            bpmTextBox.CaretIndex = caretIndex;
+        }
+
+        private void bpmTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            // if Key is not digit or backspaces
+            //MessageBox.Show(e.Key.ToString());
+            if (!(e.Key >= Key.D0 && e.Key <= Key.D9 && e.Key != Key.Space || e.Key == Key.Back))
+                e.Handled = true;
+        }
+
+        private void applyButton_Click(object sender, RoutedEventArgs e)
+        {
             if (bpmTextBox.Text.Length == 0)
                 audioEngine.Stop();
             else
@@ -46,13 +68,6 @@ namespace Metronome
                 int bpm = int.Parse(bpmTextBox.Text);
                 audioEngine.Update(bpm, 4);
             }
-        }
-
-        private void bpmTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            // if Key is not digit or backspaces
-            if (!(e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key == Key.Back))
-                e.Handled = true;
         }
     }
 }
