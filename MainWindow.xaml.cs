@@ -20,8 +20,6 @@ namespace Metronome
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int MinBPM { get; set; } = 20;
-        private int MaxBPM { get; set; } = 500;
         private AudioEngine audioEngine = new AudioEngine();
 
         public MainWindow()
@@ -31,6 +29,9 @@ namespace Metronome
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
+            int currentBpm = int.Parse(bpmTextBox.Text);
+            int currentMeasure = int.Parse(measureComboBox.Text);
+            UpdateBPM(currentBpm, currentMeasure);
             audioEngine.Play();
         }
 
@@ -65,13 +66,13 @@ namespace Metronome
         {
             // Restriction of maximum and minimum bpm values
             int bpm = 0;
-            int measure = 4;
+            int measure = int.Parse(measureComboBox.Text);
             if (int.TryParse(bpmTextBox.Text, out bpm))
             {
-                if (bpm < MinBPM)
-                    bpm = MinBPM;
-                else if (bpm > MaxBPM)
-                    bpm = MaxBPM;
+                if (bpm < audioEngine.MinBPM)
+                    bpm = audioEngine.MinBPM;
+                else if (bpm > audioEngine.MaxBPM)
+                    bpm = audioEngine.MaxBPM;
                 UpdateBPM(bpm, measure);
             }
         }
@@ -79,7 +80,7 @@ namespace Metronome
         private void UpdateBPM(int bpm, int measure)
         {
             audioEngine.Update(bpm, measure);
-            bpmLabel.Content = bpm;
+            bpmLabel.Content = bpm.ToString() + "/" + measure.ToString();
         }
     }
 }

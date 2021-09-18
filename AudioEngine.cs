@@ -14,11 +14,14 @@ namespace Metronome
         PatternEngine patternEngine = new PatternEngine();
         SampleSource Pattern { get; set; }
 
-        public AudioEngine(int sampleRate = 44100, int channelCount = 2)
+        public int MinBPM { get; set; } = 20;
+        public int MaxBPM { get; set; } = 500;
+
+        public AudioEngine(int bpm = 120, int measure = 4, int sampleRate = 44100, int channelCount = 2)
         {
             patternEngine.AccentedBeat = new SampleSource(accentedBeatPath);
             patternEngine.NormalBeat = new SampleSource(normalBeatPath);
-            Pattern = patternEngine.CreatePattern(120, 4);
+            Pattern = patternEngine.CreatePattern(bpm, measure);
 
             outputDevice = new WaveOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));

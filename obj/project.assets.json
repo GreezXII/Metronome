@@ -433,19 +433,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\novikovk\\.nuget\\packages\\": {}
+    "C:\\Users\\Кирилл\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\novikovk\\Source\\Repos\\GreezXII\\Metronome\\Metronome.csproj",
+      "projectUniqueName": "C:\\Users\\Кирилл\\Данные\\Проекты\\Metronome\\Metronome.csproj",
       "projectName": "Metronome",
-      "projectPath": "C:\\Users\\novikovk\\Source\\Repos\\GreezXII\\Metronome\\Metronome.csproj",
-      "packagesPath": "C:\\Users\\novikovk\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\novikovk\\Source\\Repos\\GreezXII\\Metronome\\obj\\",
+      "projectPath": "C:\\Users\\Кирилл\\Данные\\Проекты\\Metronome\\Metronome.csproj",
+      "packagesPath": "C:\\Users\\Кирилл\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Кирилл\\Данные\\Проекты\\Metronome\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\novikovk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Кирилл\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -486,6 +486,24 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.7, 5.0.7]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -494,7 +512,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.6.21355.2\\RuntimeIdentifierGraph.json"
       }
     }
   }
