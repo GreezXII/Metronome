@@ -29,9 +29,7 @@ namespace Metronome
 
         private void playButton_Click(object sender, RoutedEventArgs e)
         {
-            int currentBpm = int.Parse(bpmTextBox.Text);
-            int currentMeasure = int.Parse(measureComboBox.Text);
-            UpdateBPM(currentBpm, currentMeasure);
+            UpdateBPM();
             audioEngine.Play();
         }
 
@@ -73,14 +71,16 @@ namespace Metronome
                     bpm = audioEngine.MinBPM;
                 else if (bpm > audioEngine.MaxBPM)
                     bpm = audioEngine.MaxBPM;
-                UpdateBPM(bpm, measure);
+                UpdateBPM();
             }
         }
 
-        private void UpdateBPM(int bpm, int measure)
+        private void UpdateBPM()
         {
-            audioEngine.Update(bpm, measure);
-            bpmLabel.Content = bpm.ToString() + "/" + measure.ToString();
+            audioEngine.BPM = int.Parse(bpmTextBox.Text);
+            audioEngine.Measure = int.Parse(measureComboBox.Text);
+            audioEngine.Update();
+            bpmLabel.Content = audioEngine.BPM.ToString() + "/" + audioEngine.Measure.ToString();
         }
     }
 }

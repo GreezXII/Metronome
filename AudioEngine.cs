@@ -16,23 +16,26 @@ namespace Metronome
 
         public int MinBPM { get; set; } = 20;
         public int MaxBPM { get; set; } = 500;
+        public int BPM { get; set; } = 120;
+        public int Measure { get; set; } = 4;
 
         public AudioEngine(int bpm = 120, int measure = 4, int sampleRate = 44100, int channelCount = 2)
         {
             patternEngine.AccentedBeat = new SampleSource(accentedBeatPath);
             patternEngine.NormalBeat = new SampleSource(normalBeatPath);
-            Pattern = patternEngine.CreatePattern(bpm, measure);
+            Pattern = patternEngine.CreatePattern(BPM, Measure);
 
             outputDevice = new WaveOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(sampleRate, channelCount));
+            mixer.ReadFully = true;
 
             outputDevice.Init(mixer);
+            outputDevice.Play();
         }
 
         public void Play()
         {
             mixer.AddMixerInput(new SampleSourceProvider(Pattern));
-            outputDevice.Play();
         }
 
         public void Stop()
@@ -40,16 +43,16 @@ namespace Metronome
             mixer.RemoveAllMixerInputs();
         }
 
-        public void Update(int bpm, int measure)
+        public void Update()
         {
             if (outputDevice.PlaybackState == PlaybackState.Playing)
             {
                 Stop();
-                Pattern = patternEngine.CreatePattern(bpm, measure);
+                Pattern = patternEngine.CreatePattern(BPM, Measure);
                 Play();
             }
             else
-                Pattern = patternEngine.CreatePattern(bpm, measure);
+                Pattern = patternEngine.CreatePattern(BPM, Measure);
         }
     }
 }
