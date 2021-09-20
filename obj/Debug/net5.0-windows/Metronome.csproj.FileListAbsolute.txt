@@ -118,3 +118,7 @@ C:\Users\Кирилл\Данные\Проекты\Metronome\obj\Debug\net5.0-win
 C:\Users\Кирилл\Данные\Проекты\Metronome\obj\Debug\net5.0-windows\ref\Metronome.dll
 C:\Users\Кирилл\Данные\Проекты\Metronome\obj\Debug\net5.0-windows\Metronome.pdb
 C:\Users\Кирилл\Данные\Проекты\Metronome\obj\Debug\net5.0-windows\Metronome.genruntimeconfig.cache
+C:\Users\novikovk\source\repos\GreezXII\Metronome\obj\Debug\net5.0-windows\MetronomeFrame.g.cs
+C:\Users\novikovk\source\repos\GreezXII\Metronome\obj\Debug\net5.0-windows\SettingsFrame.g.cs
+C:\Users\novikovk\source\repos\GreezXII\Metronome\obj\Debug\net5.0-windows\MetronomeFrame.baml
+C:\Users\novikovk\source\repos\GreezXII\Metronome\obj\Debug\net5.0-windows\SettingsFrame.baml

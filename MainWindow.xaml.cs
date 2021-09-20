@@ -20,67 +20,25 @@ namespace Metronome
     /// </summary>
     public partial class MainWindow : Window
     {
-        private AudioEngine audioEngine = new AudioEngine();
-
+        MetronomeFrame metronomeFrame = new MetronomeFrame();
+        SettingsFrame settingsFrame = null;
         public MainWindow()
         {
             InitializeComponent();
+            Frame.Content = metronomeFrame;
         }
 
-        private void playButton_Click(object sender, RoutedEventArgs e)
+        private void MetronomeViewButton_Click(object sender, RoutedEventArgs e)
         {
-            UpdateBPM();
-            audioEngine.Play();
+            Frame.Content = metronomeFrame;
         }
 
-        private void stopButton_Click(object sender, RoutedEventArgs e)
+        private void SettingsViewButton_Click(object sender, RoutedEventArgs e)
         {
-            audioEngine.Stop();
-        }
-
-        private void bpmTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int caretIndex = bpmTextBox.CaretIndex;  // Save caret position to restore it after text update
-            string input = "";
-            // Check input when user try to paste  
-            foreach (char c in bpmTextBox.Text.TrimStart('0'))  // Trim start zeros
-                if (char.IsDigit(c))
-                    input += c;
-                else
-                    caretIndex -= 1;  // Prevent index changing when character is not allowed
-            bpmTextBox.Text = input;
-            bpmTextBox.CaretIndex = caretIndex;
-        }
-
-        private void bpmTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            // if Key is not digit or backspaces
-            //MessageBox.Show(e.Key.ToString());
-            if (!(e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 || e.Key == Key.Back))
-                e.Handled = true;
-        }
-
-        private void applyButton_Click(object sender, RoutedEventArgs e)
-        {
-            // Restriction of maximum and minimum bpm values
-            int bpm = 0;
-            int measure = int.Parse(measureComboBox.Text);
-            if (int.TryParse(bpmTextBox.Text, out bpm))
-            {
-                if (bpm < audioEngine.MinBPM)
-                    bpm = audioEngine.MinBPM;
-                else if (bpm > audioEngine.MaxBPM)
-                    bpm = audioEngine.MaxBPM;
-                UpdateBPM();
-            }
-        }
-
-        private void UpdateBPM()
-        {
-            audioEngine.BPM = int.Parse(bpmTextBox.Text);
-            audioEngine.Measure = int.Parse(measureComboBox.Text);
-            audioEngine.Update();
-            bpmLabel.Content = audioEngine.BPM.ToString() + "/" + audioEngine.Measure.ToString();
+            if (settingsFrame == null)
+                Frame.Content = new SettingsFrame();
+            else
+                Frame.Content = settingsFrame;
         }
     }
 }
