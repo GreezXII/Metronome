@@ -122,3 +122,5 @@ C:\Users\novikovk\source\repos\GreezXII\Metronome\obj\Debug\net5.0-windows\Metro
 C:\Users\novikovk\source\repos\GreezXII\Metronome\obj\Debug\net5.0-windows\SettingsFrame.g.cs
 C:\Users\novikovk\source\repos\GreezXII\Metronome\obj\Debug\net5.0-windows\MetronomeFrame.baml
 C:\Users\novikovk\source\repos\GreezXII\Metronome\obj\Debug\net5.0-windows\SettingsFrame.baml
+C:\Users\novikovk\source\repos\GreezXII\Metronome\bin\Debug\net5.0-windows\Sounds\hi-hat.wav
+C:\Users\novikovk\source\repos\GreezXII\Metronome\bin\Debug\net5.0-windows\Sounds\snare.wav

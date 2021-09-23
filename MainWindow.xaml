@@ -5,19 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Metronome"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="300" Width="550">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="60"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="0">
-            <Button x:Name="MetronomeViewButton" Content="M" Height="60" Click="MetronomeViewButton_Click"></Button>
-            <Button x:Name="SettingsViewButton" Content="S" Height="60" Click="SettingsViewButton_Click"></Button>
+            <Button x:Name="MetronomeViewButton" Content="M" Height="50" Click="MetronomeViewButton_Click"></Button>
+            <Button x:Name="SettingsViewButton" Content="S" Height="50" Click="SettingsViewButton_Click"></Button>
         </StackPanel>
-        <Frame x:Name="Frame" Grid.Column="1" Grid.Row="3" Width="Auto" Height="Auto" Margin="5,5,5,5" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="Frame" Grid.Column="1" Grid.Row="3" Height="Auto" Width="Auto" Margin="5,0,5,5" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

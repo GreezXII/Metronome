@@ -9,8 +9,8 @@ namespace Metronome
         private static readonly WaveOut outputDevice;
         private static readonly MixingSampleProvider mixer;
         // Beat pattern
-        private static string accentedBeatPath = "Sounds/snare.wav";
-        private static string normalBeatPath = "Sounds/hi-hat.wav";
+        public static string AccentedBeatPath { get; set; } = "Sounds/snare.wav";
+        public static string NormalBeatPath { get; set; } = "Sounds/hi-hat.wav";
         private static PatternEngine patternEngine = new PatternEngine();
         private static SampleSource Pattern { get; set; }
         // Metronome settings 
@@ -38,8 +38,8 @@ namespace Metronome
         static AudioEngine()
         {
             // Create beat pattern
-            patternEngine.AccentedBeat = new SampleSource(accentedBeatPath);
-            patternEngine.NormalBeat = new SampleSource(normalBeatPath);
+            patternEngine.AccentedBeat = new SampleSource(AccentedBeatPath);
+            patternEngine.NormalBeat = new SampleSource(NormalBeatPath);
             Pattern = patternEngine.CreatePattern(BPM, Measure);
 
             // Create output device and mixer
@@ -70,6 +70,15 @@ namespace Metronome
             }
             else
                 Pattern = patternEngine.CreatePattern(BPM, Measure);
+        }
+
+        public static void ApplyBeatSound(string accentedBeatPath, string normalBeatPath)
+        {
+            AccentedBeatPath = accentedBeatPath;
+            NormalBeatPath = normalBeatPath;
+            patternEngine.AccentedBeat = new SampleSource(AccentedBeatPath);
+            patternEngine.NormalBeat = new SampleSource(NormalBeatPath);
+            Update();
         }
     }
 }
