@@ -22,6 +22,7 @@ namespace Metronome
     {
         MetronomeFrame metronomeFrame = new MetronomeFrame();
         SettingsFrame settingsFrame = null;
+
         public MainWindow()
         {
             InitializeComponent();

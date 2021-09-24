@@ -8,12 +8,13 @@ namespace Metronome
         // Output device and mixer
         private static readonly WaveOut outputDevice;
         private static readonly MixingSampleProvider mixer;
+        private static bool isPlaying = false;
         // Beat pattern
         public static string AccentedBeatPath { get; set; } = "Sounds/snare.wav";
         public static string NormalBeatPath { get; set; } = "Sounds/hi-hat.wav";
         private static PatternEngine patternEngine = new PatternEngine();
         private static SampleSource Pattern { get; set; }
-        // Metronome settings 
+        // Metronome settings
         public static int MinBPM { get; set; } = 20;
         public static int MaxBPM { get; set; } = 500;
         private static int bpm = 120;
@@ -52,17 +53,25 @@ namespace Metronome
 
         public static void Play()
         {
-            mixer.AddMixerInput(new SampleSourceProvider(Pattern));
+            if (!isPlaying)
+            {
+                mixer.AddMixerInput(new SampleSourceProvider(Pattern));
+                isPlaying = true;
+            }
         }
 
         public static void Stop()
         {
-            mixer.RemoveAllMixerInputs();
+            if (isPlaying)
+            {
+                mixer.RemoveAllMixerInputs();
+                isPlaying = false;
+            }
         }
 
         public static void Update()
         {
-            if (outputDevice.PlaybackState == PlaybackState.Playing)
+            if (isPlaying)
             {
                 Stop();
                 Pattern = patternEngine.CreatePattern(BPM, Measure);

@@ -23,11 +23,11 @@
         <!-- Accented Beat -->
         <Label Grid.Column="0" Grid.Row="1" Margin="5,5,5,5" Content="Акцентированный" HorizontalAlignment="Right"></Label>
         <TextBox x:Name="txtAccentedBeatFilePath" Grid.Column="1" Grid.Row="1" Margin="5,5,5,5" VerticalContentAlignment="Center"></TextBox>
-        <Button x:Name="btnSelectAccentedBeatFile" Grid.Column="2" Grid.Row="1" Margin="5,5,5,5" Content="Выбрать файл" Click="btnSelectAccentedBeatFile_Click"/>
+        <Button x:Name="btnSelectAccentedBeatFile" Grid.Column="2" Grid.Row="1" Margin="5,5,5,5" Content="Выбрать файл" Click="SelectFileDialog"/>
         <!-- Normal Beat -->
         <Label Grid.Column="0" Grid.Row="2" Margin="5,5,5,5" Content="Обычный" HorizontalAlignment="Right"></Label>
         <TextBox x:Name="txtNormalBeatFilePath" Grid.Column="1" Grid.Row="2" Margin="5,5,5,5" VerticalContentAlignment="Center"/>
-        <Button x:Name="btnSelectNormalBeatFile" Grid.Column="2" Grid.Row="2" Margin="5,5,5,5" Content="Выбрать файл" Click="btnSelectNormalBeatFile_Click"></Button>
+        <Button x:Name="btnSelectNormalBeatFile" Grid.Column="2" Grid.Row="2" Margin="5,5,5,5" Content="Выбрать файл" Click="SelectFileDialog"></Button>
         
         <!-- Apply Button -->
         <Button x:Name="btnApplySettings" Grid.Column="2" Grid.Row="3" Content="Применить" Margin="5,5,5,5" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Click="btnApplySettings_Click"></Button>
