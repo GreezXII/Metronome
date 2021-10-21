@@ -13,7 +13,9 @@ namespace Metronome
         public static string AccentedBeatPath { get; set; } = "Sounds/snare.wav";
         public static string NormalBeatPath { get; set; } = "Sounds/hi-hat.wav";
         private static PatternEngine patternEngine = new PatternEngine();
-        private static SampleSource Pattern { get; set; }
+        private static SampleSource Pattern { get; set; }  // Remove?
+        private static SampleSource AccentedPattern { get; set; }
+        private static SampleSource NormalPattern { get; set; }
         // Metronome settings
         public static int MinBPM { get; set; } = 20;
         public static int MaxBPM { get; set; } = 500;
@@ -42,6 +44,8 @@ namespace Metronome
             patternEngine.AccentedBeat = new SampleSource(AccentedBeatPath);
             patternEngine.NormalBeat = new SampleSource(NormalBeatPath);
             Pattern = patternEngine.CreatePattern(BPM, Measure);
+            AccentedPattern = patternEngine.CreateAccentedBeatPattern(BPM, Measure);
+            NormalPattern = patternEngine.CreateNormalBeatPattern(BPM, Measure);
 
             // Create output device and mixer
             outputDevice = new WaveOut();
@@ -55,7 +59,9 @@ namespace Metronome
         {
             if (!isPlaying)
             {
-                mixer.AddMixerInput(new SampleSourceProvider(Pattern));
+                outputDevice.Play();
+                mixer.AddMixerInput(new SampleSourceProvider(AccentedPattern));
+                mixer.AddMixerInput(new SampleSourceProvider(NormalPattern));
                 isPlaying = true;
             }
         }
@@ -66,6 +72,7 @@ namespace Metronome
             {
                 mixer.RemoveAllMixerInputs();
                 isPlaying = false;
+                outputDevice.Stop();
             }
         }
 
@@ -74,11 +81,15 @@ namespace Metronome
             if (isPlaying)
             {
                 Stop();
-                Pattern = patternEngine.CreatePattern(BPM, Measure);
+                AccentedPattern = patternEngine.CreateAccentedBeatPattern(BPM, Measure);
+                NormalPattern = patternEngine.CreateNormalBeatPattern(BPM, Measure);
                 Play();
             }
             else
-                Pattern = patternEngine.CreatePattern(BPM, Measure);
+            {
+                AccentedPattern = patternEngine.CreateAccentedBeatPattern(BPM, Measure);
+                NormalPattern = patternEngine.CreateNormalBeatPattern(BPM, Measure);
+            }
         }
 
         public static void ApplyBeatSound(string accentedBeatPath, string normalBeatPath)
