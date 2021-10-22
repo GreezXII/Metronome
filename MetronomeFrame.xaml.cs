@@ -70,5 +70,18 @@ namespace Metronome
             bpmLabel.Content = AudioEngine.BPM.ToString() + "/" + AudioEngine.Measure.ToString();
         }
 
+        private void UpdateVolume(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider s = sender as Slider;
+            switch (s.Name)
+            {
+                case "accentedBeatLoudSlider":
+                    AudioEngine.accentedVolumeProvider.Volume = (float)s.Value;
+                    break;
+                case "normalBeatLoudSlider":
+                    AudioEngine.normalVolumeProvider.Volume = (float)s.Value;
+                    break;
+            }
+        }
     }
 }

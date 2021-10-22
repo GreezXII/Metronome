@@ -17,6 +17,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Border BorderBrush="Black" BorderThickness="2" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="5,5,5,5">
             <Label x:Name="bpmLabel" Grid.Column="0" Content="120/4" HorizontalAlignment="Left" Margin="5,5,5,5" VerticalAlignment="Top" FontSize="48" FontFamily="Bahnschrift SemiBold" FontWeight="Bold"/>
@@ -29,5 +31,9 @@
         <Button x:Name="applyButton" Grid.Column="2" Grid.Row="1" Content="Применить" Margin="5,5,5,5" Width="75" Click="applyButton_Click"></Button>
         <Button x:Name="playButton" Grid.Column="0" Grid.Row="2" Content="Старт" HorizontalAlignment="Left" Margin="5,5,5,5" Width="125px" VerticalAlignment="Top" Click="playButton_Click"/>
         <Button x:Name="stopButton" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" Content="Стоп" HorizontalAlignment="Left" Margin="5,5,5,5" Width="125px" VerticalAlignment="Top" Click="stopButton_Click"/>
+        <Label Grid.Column="0" Grid.Row="3" Content="Акцентированный"></Label>
+        <Slider x:Name="accentedBeatLoudSlider" Grid.Column = "1" Grid.ColumnSpan="2" Grid.Row="3" VerticalAlignment="Center" Value="0.8" Minimum="0" Maximum="1" LargeChange="0.1" ValueChanged="UpdateVolume"/>
+        <Label Grid.Column="0" Grid.Row="4" Content="Обычный"></Label>
+        <Slider x:Name="normalBeatLoudSlider" Grid.Column = "1" Grid.ColumnSpan="2" Grid.Row="4" VerticalAlignment="Center" Value="0.8" Minimum="0" Maximum="1" TickFrequency="0.1" LargeChange="0.1" ValueChanged="UpdateVolume"></Slider>
     </Grid>
 </Page>

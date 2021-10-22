@@ -15,6 +15,8 @@ namespace Metronome
         private static PatternEngine patternEngine = new PatternEngine();
         private static SampleSource Pattern { get; set; }  // Remove?
         private static SampleSource AccentedPattern { get; set; }
+        public static VolumeSampleProvider accentedVolumeProvider { get; set; }
+        public static VolumeSampleProvider normalVolumeProvider { get; set; }
         private static SampleSource NormalPattern { get; set; }
         // Metronome settings
         public static int MinBPM { get; set; } = 20;
@@ -47,6 +49,10 @@ namespace Metronome
             AccentedPattern = patternEngine.CreateAccentedBeatPattern(BPM, Measure);
             NormalPattern = patternEngine.CreateNormalBeatPattern(BPM, Measure);
 
+            // Create Volume Providers
+            accentedVolumeProvider = new VolumeSampleProvider(new SampleSourceProvider(AccentedPattern));
+            normalVolumeProvider = new VolumeSampleProvider(new SampleSourceProvider(NormalPattern));
+
             // Create output device and mixer
             outputDevice = new WaveOut();
             mixer = new MixingSampleProvider(WaveFormat.CreateIeeeFloatWaveFormat(44100, 2));
@@ -60,8 +66,10 @@ namespace Metronome
             if (!isPlaying)
             {
                 outputDevice.Play();
-                mixer.AddMixerInput(new SampleSourceProvider(AccentedPattern));
-                mixer.AddMixerInput(new SampleSourceProvider(NormalPattern));
+                accentedVolumeProvider.Volume = 0.8f;
+                normalVolumeProvider.Volume = 0.8f;
+                mixer.AddMixerInput(accentedVolumeProvider);
+                mixer.AddMixerInput(normalVolumeProvider);
                 isPlaying = true;
             }
         }
