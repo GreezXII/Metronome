@@ -1,20 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "Kph6DXjBanxXsd50CAB9+J+xChZ1HCQJIRYLYXrANtkwAzTdtxJqFUA4fo5QeBjhcG5BGLtL0Yveia7T2ibhlQ==",
+  "dgSpecHash": "OlfbXCnMXyBJaJOryJMdTKlHcR03B1G/PIZ4/O4+5/uNQ/VEnnKKgIxkV58Q8ku9NJxvyi3oT/suuOloqThBHg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\novikovk\\source\\repos\\GreezXII\\Metronome\\Metronome.csproj",
+  "projectFilePath": "C:\\Users\\GreezXII\\Данные\\Проекты\\Metronome\\Metronome.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\novikovk\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\naudio\\2.0.1\\naudio.2.0.1.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\naudio.asio\\2.0.0\\naudio.asio.2.0.0.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\naudio.core\\2.0.0\\naudio.core.2.0.0.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\naudio.midi\\2.0.1\\naudio.midi.2.0.1.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\naudio.wasapi\\2.0.0\\naudio.wasapi.2.0.0.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\naudio.winforms\\2.0.1\\naudio.winforms.2.0.1.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\naudio.winmm\\2.0.1\\naudio.winmm.2.0.1.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\novikovk\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+    "C:\\Users\\GreezXII\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\naudio\\2.0.1\\naudio.2.0.1.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\naudio.asio\\2.0.0\\naudio.asio.2.0.0.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\naudio.core\\2.0.0\\naudio.core.2.0.0.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\naudio.midi\\2.0.1\\naudio.midi.2.0.1.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\naudio.wasapi\\2.0.0\\naudio.wasapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\naudio.winforms\\2.0.1\\naudio.winforms.2.0.1.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\naudio.winmm\\2.0.1\\naudio.winmm.2.0.1.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\GreezXII\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

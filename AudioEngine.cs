@@ -8,17 +8,16 @@ namespace Metronome
         // Output device and mixer
         private static readonly WaveOut outputDevice;
         private static readonly MixingSampleProvider mixer;
-        private static bool isPlaying = false;
         // Beat pattern
-        public static string AccentedBeatPath { get; set; } = "Sounds/snare.wav";
+        public static string AccentedBeatPath { get; set; } = "Sounds/snare.wav"; // TODO: объединить в класс Beat путь к файлу, семпл, громкость и т.д.
         public static string NormalBeatPath { get; set; } = "Sounds/hi-hat.wav";
         private static PatternEngine patternEngine = new PatternEngine();
-        private static SampleSource Pattern { get; set; }  // Remove?
         private static SampleSource AccentedPattern { get; set; }
+        private static SampleSource NormalPattern { get; set; }
         public static VolumeSampleProvider accentedVolumeProvider { get; set; }
         public static VolumeSampleProvider normalVolumeProvider { get; set; }
-        private static SampleSource NormalPattern { get; set; }
         // Metronome settings
+        private static bool isPlaying = false;
         public static int MinBPM { get; set; } = 20;
         public static int MaxBPM { get; set; } = 500;
         private static int bpm = 120;
@@ -45,7 +44,6 @@ namespace Metronome
             // Create beat pattern
             patternEngine.AccentedBeat = new SampleSource(AccentedBeatPath);
             patternEngine.NormalBeat = new SampleSource(NormalBeatPath);
-            Pattern = patternEngine.CreatePattern(BPM, Measure);
             AccentedPattern = patternEngine.CreateAccentedBeatPattern(BPM, Measure);
             NormalPattern = patternEngine.CreateNormalBeatPattern(BPM, Measure);
 
@@ -65,11 +63,13 @@ namespace Metronome
         {
             if (!isPlaying)
             {
-                outputDevice.Play();
-                accentedVolumeProvider.Volume = 0.8f;
-                normalVolumeProvider.Volume = 0.8f;
+                accentedVolumeProvider = new VolumeSampleProvider(new SampleSourceProvider(AccentedPattern));
+                normalVolumeProvider = new VolumeSampleProvider(new SampleSourceProvider(NormalPattern));
+                accentedVolumeProvider.Volume = 1.0f;
+                normalVolumeProvider.Volume = 1.0f;
                 mixer.AddMixerInput(accentedVolumeProvider);
                 mixer.AddMixerInput(normalVolumeProvider);
+                outputDevice.Play();
                 isPlaying = true;
             }
         }
@@ -79,8 +79,8 @@ namespace Metronome
             if (isPlaying)
             {
                 mixer.RemoveAllMixerInputs();
-                isPlaying = false;
                 outputDevice.Stop();
+                isPlaying = false;
             }
         }
 

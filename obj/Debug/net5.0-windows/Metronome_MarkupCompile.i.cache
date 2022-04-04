@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\novikovk\source\repos\GreezXII\Metronome\obj\Debug\net5.0-windows\
+C:\Users\GreezXII\Данные\Проекты\Metronome\obj\Debug\net5.0-windows\
 Metronome
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-C:\Users\novikovk\source\repos\GreezXII\Metronome\App.xaml
+C:\Users\GreezXII\Данные\Проекты\Metronome\App.xaml
 32111617496
 
 11155694997
-208-1744827961
+208-1094049293
 MainWindow.xaml;MetronomeFrame.xaml;SettingsFrame.xaml;
 
 False
